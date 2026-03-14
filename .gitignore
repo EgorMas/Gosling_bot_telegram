@@ -1,0 +1,31 @@
+# Виртуальное окружение
+venv/
+.venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Логи
+*.log
+logs/
+
+# Токен бота и секреты
+token.txt
+*.env
+secrets.py
+
+# Служебные файлы ОС
+.DS_Store
+Thumbs.db
+
+# Файлы редакторов
+.vscode/
+.idea/
+
+# Артефакты сборки
+dist/
+build/
+*.egg-info/
