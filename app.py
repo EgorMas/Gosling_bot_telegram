@@ -150,7 +150,7 @@ def main() -> None:
 
     application = (
         Application.builder()
-        .token(token)  # используется глобальная переменная token
+        .token(token)                     # используется глобальная переменная token
         .request(request)
         .post_init(post_init)
         .build()
@@ -162,8 +162,16 @@ def main() -> None:
     application.add_error_handler(error_handler)
 
     logger.info("Бот запущен и готов к работе...")
+
+    # ---------- Критическое дополнение для Python 3.14 ----------
+    # Убеждаемся, что цикл событий создан и установлен
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    # Запускаем бота
     application.run_polling(poll_interval=4)
-
-
 if __name__ == "__main__":
     main()
