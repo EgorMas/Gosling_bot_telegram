@@ -40,7 +40,7 @@ root_logger.addHandler(handler)
 logger = logging.getLogger(__name__)
 
 # ---------- Глобальная переменная токена (получаем из окружения) ----------
-token = os.environ.get("TELEGRAM_BOT_TOKEN")
+token = os.getenv("TELEGRAM_BOT_TOKEN")
 if not token:
     logger.error("Переменная окружения TELEGRAM_BOT_TOKEN не установлена или пуста.")
     exit(1)
@@ -90,7 +90,8 @@ async def gosling_command(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     caption = f"{user.mention_html()}"
 
     # Путь к изображению
-    image_path = Path("Gosling_today_images") / f"Gosling_{number}.jpg"
+    BASE_DIR = Path(__file__).parent
+    image_path = BASE_DIR / "Gosling_today_images" / f"Gosling_{number}.jpg"
 
     try:
         if not image_path.exists():
